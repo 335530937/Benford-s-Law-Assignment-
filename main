@@ -3,7 +3,7 @@
  * Date:May 7, 2021
  * Name:Gordon Wu and Amir Sayffi
  * Teacher:Mr.Ho
- * Description: 
+ * Description: Analyzes the entire sales data and checks for fraud using Benford's Law. Also displays the results on a table. 
  * */
 
 //Import Scanner
