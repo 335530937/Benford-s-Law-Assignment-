@@ -1,0 +1,44 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.stage.Stage;
+ 
+public class App extends Application {
+  
+ 
+    @Override public void start(Stage stage) {
+        stage.setTitle("Bar Chart Sample");
+        final CategoryAxis xAxis = new CategoryAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        final BarChart<String,Number> bc = 
+            new BarChart<String,Number>(xAxis,yAxis);
+        bc.setTitle("Benford's Law Distribution Leading Digit");
+        xAxis.setLabel("Digit");       
+        yAxis.setLabel("Percent");
+ 
+        XYChart.Series series1 = new XYChart.Series();
+        series1.setName("2003");       
+        series1.getData().add(new XYChart.Data("1", 900));
+        series1.getData().add(new XYChart.Data("2", 900));     
+        series1.getData().add(new XYChart.Data("3", 900));
+        series1.getData().add(new XYChart.Data("4", 900));
+        series1.getData().add(new XYChart.Data("5", 900));
+        series1.getData().add(new XYChart.Data("6", 900));
+        series1.getData().add(new XYChart.Data("7", 900));
+        series1.getData().add(new XYChart.Data("8", 900));
+        series1.getData().add(new XYChart.Data("9", 900));
+
+        
+        Scene scene  = new Scene(bc,800,600);
+        bc.getData().addAll(series1);
+        stage.setScene(scene);
+        stage.show();
+    }
+ 
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
