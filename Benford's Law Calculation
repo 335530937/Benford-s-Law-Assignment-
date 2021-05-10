@@ -1,0 +1,64 @@
+/*
+ * 
+ * Date:May 9, 2021
+ * Name:Gordon Wu
+ * Teacher:Mr.Ho
+ * Description: Calculates the frequency of the first digit as a percentage 
+ * */
+
+class BenCalc{
+    public static void main (String[] args) {
+      
+      //Lets say we're working with these numbers 
+      double salesData[] = {111, 111, 111, 111, 222,  222, 222, 333, 444, 555, 666}; 
+      
+      timesShown(salesData); 
+    }
+    
+    //Add docstrings
+    public static void timesShown (double [] salesData) {
+      
+      //Initialize variables
+      double timesShown = 0; //Will store the amount of times the first number has been shown 
+      double totalSales = 0; //The total amount of sales 
+      
+      for(int j=1; j < 10; j++){
+        timesShown = 0; 
+        for(int i=0; i < salesData.length; i++){
+        totalSales += 1; 
+          
+          double tempNum = salesData[i]; //Will temporarily store an element
+          double firstDigit = Double.parseDouble(Double.toString(tempNum).substring(0, 1)); //Takes the first digit of the number
+
+          //Checks if the first digit equals to a number from 1-9(j) 
+          if(firstDigit == j){
+            timesShown += 1; 
+          }
+        }
+        
+        
+        
+        // Make an array that has the times shown as its elemtns. Or maybe switch timeshown to an array
+        
+        calcPercent(timesShown, totalSales); 
+        
+        //This will be here for testing purposes
+        System.out.println("Times " + j + " was shown " + timesShown); 
+      }
+    }
+    
+    //Add docstrings
+    public static void calcPercent (double timesShown, double totalSales) {
+      
+      //This will be here for testing purposes. Delete later
+      System.out.println(timesShown); 
+      
+      //ARRAY percentage[i] = timesShown/totalSales * 100.0 
+      
+      //Call this method in the graph method possibily 
+    }
+      
+    
+}
+
+     
