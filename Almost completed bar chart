@@ -1,4 +1,10 @@
-
+/*
+ * 
+ * Date:May 8, 2021
+ * Name:Gordon Wu
+ * Teacher:Mr.Ho
+ * Description: A visual representation of the distribution of first digits from 1 to 9
+ * */
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
@@ -11,10 +17,15 @@ public class App extends Application {
   
     public static void main(String[] args) {
         
-        launch(args); //Goes into application to set it up as a javaFX program 
+        launch(args); //Launches the JavaFX application 
 
     }
     
+    /*
+    * Description: Generates a bar chart and displays the digit frequency as a percentage on the bar chart.  
+    * 
+    * @author - Gordon Wu 
+    * */
     @Override 
     public void start(Stage stage) {
  
@@ -44,7 +55,7 @@ public class App extends Application {
         series.getData().add(new XYChart.Data("8", 900));
         series.getData().add(new XYChart.Data("9", 900));
         
-        bc.getData().addAll(series); 
+        bc.getData().addAll(series); //Adds data to the bar chart 
         
         Scene scene  = new Scene(bc,800,600); //Creates the scene, sets width and height
         stage.setScene(scene); //Sets the scene 
