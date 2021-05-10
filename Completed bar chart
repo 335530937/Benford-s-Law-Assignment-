@@ -1,3 +1,4 @@
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
@@ -8,6 +9,11 @@ import javafx.stage.Stage;
  
 public class App extends Application {
   
+    public static void main(String[] args) {
+        
+        launch(args); //Goes into application to set it up as a javaFX program 
+
+    }
     
     @Override 
     public void start(Stage stage) {
@@ -45,10 +51,6 @@ public class App extends Application {
         stage.show(); //Shows the stage
     }
  
-    public static void main(String[] args) {
-        
-        launch(args); 
- 
-    }
- 
+
+
 }
