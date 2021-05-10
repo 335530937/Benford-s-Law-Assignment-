@@ -1,0 +1,56 @@
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.stage.Stage;
+ 
+public class App extends Application {
+  
+    public static void main(String[] args) {
+        
+        launch(args); //Goes into application to set it up as a javaFX program 
+
+    }
+    
+    @Override 
+    public void start(Stage stage) {
+ 
+ 
+        //Declare axes
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        BarChart<String,Number> bc = new BarChart<String,Number>(xAxis,yAxis); //Create bar chart object 
+        
+        //Label axis and titles 
+        stage.setTitle("Benford's law graph"); 
+        bc.setTitle("Benford's Law Distribution Leading Digit"); 
+        xAxis.setLabel("Digit");       
+        yAxis.setLabel("Percent");
+        bc.setLegendVisible(false);  //Makes legend invisible 
+ 
+        //Define the series of data and assign data to the chart 
+        XYChart.Series series = new XYChart.Series();
+                
+        series.getData().add(new XYChart.Data("1", 900));
+        series.getData().add(new XYChart.Data("2", 900));     
+        series.getData().add(new XYChart.Data("3", 900));
+        series.getData().add(new XYChart.Data("4", 900));
+        series.getData().add(new XYChart.Data("5", 900));
+        series.getData().add(new XYChart.Data("6", 900));
+        series.getData().add(new XYChart.Data("7", 900));
+        series.getData().add(new XYChart.Data("8", 900));
+        series.getData().add(new XYChart.Data("9", 900));
+        
+        bc.getData().addAll(series); 
+        
+        Scene scene  = new Scene(bc,800,600); //Creates the scene, sets width and height
+        stage.setScene(scene); //Sets the scene 
+        stage.show(); //Shows the stage
+    }
+ 
+
+
+}
