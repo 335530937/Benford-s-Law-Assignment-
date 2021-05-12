@@ -28,8 +28,7 @@ class structureBenCalc{
       double timesShown [] = new double[10]; //Will store the amount of times the first number has been shown 
       double amountShown = 0; 
       double percent [] = new double[10]; //Will store the percentages 
-      int counter = 0; //Will count the amount of times the first digit frequency was between 29% and 32% 
-      
+
       //Checks all the sales data and compares each number to the numbers from 1-9 
       for(int j=1; j < 10; j++){ 
         amountShown = 0; 
@@ -49,21 +48,13 @@ class structureBenCalc{
       for(int n = 1; n < 10; n++){
         percent[n] = timesShown[n]/salesData.length * 100; 
         percent[n] = Math.round(percent[n]*10.0) / 10.0; //Rounds to 1 decimal place
-        
-        //Checks if the first digit freqeuncy is between 29% and 32% 
-        if (percent[n] > 29 && percent[n] < 32){
-          counter += 1;  
-        }
-                                         
       }
-      
-      
-      //If the counter was not equal to 1
-      if (counter != 1){
-        System.out.println("Fraud most likely occured. "); 
+      //Checks if the first digit freqeuncy is between 29% and 32% 
+      if (percent[1] > 29 && percent[1] < 32){
+        System.out.println("Fraud likely did NOT occur."); 
       }
       else{
-        System.out.println("Fraud most likely did NOT occur. "); 
+        System.out.println("Fraud likely did occur."); 
       }
       
       return percent; 
