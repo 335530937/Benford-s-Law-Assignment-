@@ -1,44 +1,124 @@
 /*
  * 
- * Date:May 7, 2021
- * Name:Gordon Wu and Amir Sayffi
+ * Date:May 8, 2021
+ * Name:Gordon Wu
  * Teacher:Mr.Ho
- * Description: Analyzes the entire sales data and checks for fraud using Benford's Law. Also displays the results on a table. 
+ * Description: A visual representation of the distribution of first digits from 1 to 9
  * */
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.stage.Stage;
 
-//Import Scanner
-import java.util.Scanner;
+import java.util.Scanner; 
+public class App extends Application {
+  
+    public static void main(String[] args) {
+        //Initialize variables
+        String choice = "A"; 
+        double sales [] = new double [1621]; 
+        double [] sale = readCsv(sales);
 
-//Class file 
-class salesAnalysis{
-  public static void main(String[] args) { 
-    
-    //Initialize variables
-    String choice = "A"; 
-    //Keep calling print menu method until valid answer or they want to quit
-    while(choice.equals("A") || choice.equals("B")){
-      choice = printMenu(choice); 
+        //Keep calling print menu method until valid answer or they want to quit
+        while(choice.equals("A") || choice.equals("B")){
+            choice = printMenu(choice); 
+
+            if(choice.equals("A")){
+                for(int i = 0; i < sales.length; i++){
+                    System.out.println(sale[i]);
+                }
+            
+            }
+            else if(choice.equals("B")){
+        
+                
+                //maybe start method launch the ben calc method fr each input and we set.
+                //And also call the ben calc method here so we can pass the array  
+                
+                //launch(args); //Launches the JavaFX application 
+                launch(args); //Launches the JavaFX application 
+            }
+        }
+
+        
+
+    }
+    public static void benCalc(){
+         
+    }
+    public static double [] readCsv(double[] sales){
+        //Amir 
+        return sales;
     }
     
+    /*
+    * Description: Asks user to choose an option
+    * 
+    * @author - Gordon Wu
+    * @param choice - The string choice takes in user input 
+    * @return - returns the String choice
+    * 
+    * */ 
+    public static String printMenu(String choice){
+        //Initialize scanner
+        Scanner reader = new Scanner(System.in);
+        //Ask user to choose an option
+        System.out.println("A) Report on total Sales"); 
+        System.out.println("B) Check for fraud in sales data"); 
+        System.out.println("C) Quit"); 
+        System.out.println("Type either 'A' , 'B' or 'C'"); 
+        choice = reader.nextLine(); 
+
+        reader.close();
+        return choice;   
+         
+    }
+        
     
-  }
-  /*
-   * Description: Asks user to choose an option
-   * 
-   * @author - Gordon Wu
-   * @param choice - The string choice takes in user input 
-   * @return - returns the String choice
-   * 
-   * */ 
-  public static String printMenu(String choice){
-    //Initialize scanner
-    Scanner reader = new Scanner(System.in);
-    //Ask user to choose an option
-    System.out.println("A) Report on total Sales"); 
-    System.out.println("B) Check for fraud in sales data"); 
-    System.out.println("C) Quit"); 
-    System.out.println("Type either 'A' , 'B' or 'C'"); 
-    choice = reader.nextLine(); 
-    return choice;   
-  }
+    /*
+    * Description: Generates a bar chart and displays the digit frequency as a percentage on the bar chart.  
+    * 
+    * @author - Gordon Wu 
+    * */
+    @Override 
+    public void start(Stage stage) {
+ 
+ 
+        //Declare axes
+        CategoryAxis xAxis = new CategoryAxis();
+        NumberAxis yAxis = new NumberAxis();
+        BarChart<String,Number> bc = new BarChart<String,Number>(xAxis,yAxis); //Create bar chart object 
+        
+        //Label axis and titles 
+        stage.setTitle("Benford's law graph"); 
+        bc.setTitle("Benford's Law Distribution Leading Digit"); 
+        xAxis.setLabel("Digit");       
+        yAxis.setLabel("Percent");
+        bc.setLegendVisible(false);  //Makes legend invisible 
+ 
+        //Define the series of data and assign data to the chart 
+        XYChart.Series series = new XYChart.Series();
+                
+        series.getData().add(new XYChart.Data("1", 900));
+        series.getData().add(new XYChart.Data("2", 900));     
+        series.getData().add(new XYChart.Data("3", 900));
+        series.getData().add(new XYChart.Data("4", 900));
+        series.getData().add(new XYChart.Data("5", 900));
+        series.getData().add(new XYChart.Data("6", 900));
+        series.getData().add(new XYChart.Data("7", 900));
+        series.getData().add(new XYChart.Data("8", 900));
+        series.getData().add(new XYChart.Data("9", 900));
+        
+        bc.getData().addAll(series); //Adds data to the bar chart 
+        
+        Scene scene  = new Scene(bc,800,600); //Creates the scene, sets width and height
+        stage.setScene(scene); //Sets the scene 
+        stage.show(); //Shows the stage  
+    }
+ 
+
+
 }
