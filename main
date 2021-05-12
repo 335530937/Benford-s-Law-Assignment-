@@ -11,10 +11,34 @@ import java.util.Scanner;
 
 //Class file 
 class salesAnalysis{
-  public static void main(String[] args) {
+  public static void main(String[] args) { 
+    
+    //Initialize variables
+    String choice = "A"; 
+    //Keep calling print menu method until valid answer or they want to quit
+    while(choice.equals("A") || choice.equals("B")){
+      choice = printMenu(choice); 
+    }
     
     
   }
-  
-  
+  /*
+   * Description: Asks user to choose an option
+   * 
+   * @author - Gordon Wu
+   * @param choice - The string choice takes in user input 
+   * @return - returns the String choice
+   * 
+   * */ 
+  public static String printMenu(String choice){
+    //Initialize scanner
+    Scanner reader = new Scanner(System.in);
+    //Ask user to choose an option
+    System.out.println("A) Report on total Sales"); 
+    System.out.println("B) Check for fraud in sales data"); 
+    System.out.println("C) Quit"); 
+    System.out.println("Type either 'A' , 'B' or 'C'"); 
+    choice = reader.nextLine(); 
+    return choice;   
+  }
 }
