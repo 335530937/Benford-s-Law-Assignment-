@@ -12,7 +12,8 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
-
+import java.io.FileWriter; 
+ 
 import java.util.Scanner; 
 public class App extends Application {
   
@@ -21,11 +22,11 @@ public class App extends Application {
         String choice = "A"; 
         double sales [] = new double [1621]; 
         double [] sale = readCsv(sales);
-
+ 
         //Keep calling print menu method until valid answer or they want to quit
         while(choice.equals("A") || choice.equals("B")){
             choice = printMenu(choice); 
-
+ 
             if(choice.equals("A")){
                 for(int i = 0; i < sales.length; i++){
                     System.out.println(sale[i]);
@@ -33,22 +34,19 @@ public class App extends Application {
             
             }
             else if(choice.equals("B")){
-        
                 
-                //maybe start method launch the ben calc method fr each input and we set.
-                //And also call the ben calc method here so we can pass the array  
+                
+                //What if we call bencalc which launches args 
                 
                 //launch(args); //Launches the JavaFX application 
                 launch(args); //Launches the JavaFX application 
             }
         }
-
+ 
         
-
+ 
     }
-    public static void benCalc(){
-         
-    }
+    
     public static double [] readCsv(double[] sales){
         //Amir 
         return sales;
@@ -71,7 +69,7 @@ public class App extends Application {
         System.out.println("C) Quit"); 
         System.out.println("Type either 'A' , 'B' or 'C'"); 
         choice = reader.nextLine(); 
-
+ 
         reader.close();
         return choice;   
          
@@ -84,7 +82,7 @@ public class App extends Application {
     * @author - Gordon Wu 
     * */
     @Override 
-    public void start(Stage stage) {
+    public void start(Stage stage) throws Exception {
  
  
         //Declare axes
@@ -117,8 +115,20 @@ public class App extends Application {
         Scene scene  = new Scene(bc,800,600); //Creates the scene, sets width and height
         stage.setScene(scene); //Sets the scene 
         stage.show(); //Shows the stage  
+
+        //Exports the numerical representation
+        FileWriter writer = new FileWriter("something.txt");
+        Integer arr[] = { 10, 20, 30, 40, 50, 60, 70};
+        int len = arr.length;
+        for (int i = 1; i < len; i++) {
+            writer.write(i + "=" + arr[i] + "%"+"\t"+ "");
+            writer.write("\n");
+        }
+        writer.close();
     }
  
-
-
+ 
+ 
 }
+ 
+ 
