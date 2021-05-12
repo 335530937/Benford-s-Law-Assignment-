@@ -25,20 +25,18 @@ public class App extends Application {
  
         //Keep calling print menu method until valid answer or they want to quit
         while(choice.equals("A") || choice.equals("B")){
+
             choice = printMenu(choice); 
  
             if(choice.equals("A")){
+
+                //This will be here for now. The readCsv should print out all the values 
                 for(int i = 0; i < sales.length; i++){
                     System.out.println(sale[i]);
                 }
             
             }
             else if(choice.equals("B")){
-                
-                
-                //What if we call bencalc which launches args 
-                
-                //launch(args); //Launches the JavaFX application 
                 launch(args); //Launches the JavaFX application 
             }
         }
@@ -48,7 +46,12 @@ public class App extends Application {
     }
     
     public static double [] readCsv(double[] sales){
-        //Amir 
+       
+        //Assuming he asked for file name and the number of sales
+
+        //This will be here for now to demonstrate that the program works 
+        double [] sample = {111, 111, 111, 555, 565, 666, 666, 666, 666, 666};
+        sales = sample; 
         return sales;
     }
     
@@ -77,14 +80,22 @@ public class App extends Application {
         
     
     /*
-    * Description: Generates a bar chart and displays the digit frequency as a percentage on the bar chart.  
+    * Description: Generates a bar chart and displays the digit frequency as a percentage on the bar chart. Also exports the digit
+    *              frequency to the "results.csv" file
     * 
     * @author - Gordon Wu 
     * */
     @Override 
     public void start(Stage stage) throws Exception {
- 
- 
+
+        //Lets we're working with these numbers 
+        double salesData[] = {111, 111, 111, 222231, 323231, 444321, 66666, 709917, 881237, 998321};  
+        
+
+        //salesData = readCsv(salesData); 
+        double [] percent = new double [10]; 
+        percent = percentCalc(salesData); 
+
         //Declare axes
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
@@ -100,15 +111,15 @@ public class App extends Application {
         //Define the series of data and assign data to the chart 
         XYChart.Series series = new XYChart.Series();
                 
-        series.getData().add(new XYChart.Data("1", 900));
-        series.getData().add(new XYChart.Data("2", 900));     
-        series.getData().add(new XYChart.Data("3", 900));
-        series.getData().add(new XYChart.Data("4", 900));
-        series.getData().add(new XYChart.Data("5", 900));
-        series.getData().add(new XYChart.Data("6", 900));
-        series.getData().add(new XYChart.Data("7", 900));
-        series.getData().add(new XYChart.Data("8", 900));
-        series.getData().add(new XYChart.Data("9", 900));
+        series.getData().add(new XYChart.Data("1", percent[1]));
+        series.getData().add(new XYChart.Data("2", percent[2]));     
+        series.getData().add(new XYChart.Data("3", percent[3]));
+        series.getData().add(new XYChart.Data("4", percent[4]));
+        series.getData().add(new XYChart.Data("5", percent[5]));
+        series.getData().add(new XYChart.Data("6", percent[6]));
+        series.getData().add(new XYChart.Data("7", percent[7]));
+        series.getData().add(new XYChart.Data("8", percent[8]));
+        series.getData().add(new XYChart.Data("9", percent[9]));
         
         bc.getData().addAll(series); //Adds data to the bar chart 
         
@@ -117,8 +128,9 @@ public class App extends Application {
         stage.show(); //Shows the stage  
 
         //Exports the numerical representation
-        FileWriter writer = new FileWriter("something.txt");
-        Integer arr[] = { 10, 20, 30, 40, 50, 60, 70};
+        FileWriter writer = new FileWriter("something.txt"); //Lets say we were using a txt document 
+        
+        double arr[] = percent;
         int len = arr.length;
         for (int i = 1; i < len; i++) {
             writer.write(i + "=" + arr[i] + "%"+"\t"+ "");
@@ -126,9 +138,57 @@ public class App extends Application {
         }
         writer.close();
     }
- 
- 
- 
+
+    /*
+     * Description: Takes the sales data and records the number of times the first digit was shown then calculates the digit frequency
+     * 
+     * @author - Gordon Wu 
+     * @param salesData - double array value that is populated with the sale values 
+     * */ 
+    public static double[] percentCalc (double [] salesData) {
+        
+        double saleData[] = {111, 111, 111, 222231, 323231, 444321, 66666, 709917, 881237, 998321};  //Lets we're working with these numbers 
+        saleData = readCsv(saleData); 
+
+        //Initialize variables
+        double timesShown [] = new double[10]; //Lets say the length of our array is 10 for now. 
+        double amountShown = 0; 
+        double percent [] = new double[10]; //Will store the percentages 
+  
+        //Checks all the sales data and compares each number to the numbers from 1-9 
+        for(int j=1; j < 10; j++){ 
+          amountShown = 0; 
+          for(int i=0; i < salesData.length; i++){          
+            double tempNum = salesData[i]; //Will temporarily store an element
+            double firstDigit = Double.parseDouble(Double.toString(tempNum).substring(0, 1)); //Takes the first digit of the number
+            
+            //Checks if the first digit equals to a number from 1-9(j) 
+            if(firstDigit == j){
+              amountShown += 1; 
+            }
+          }
+          timesShown[j] = amountShown; //Populate the array timesShown 
+        }
+      
+        //Calculates the percentage for all 9 digits
+        for(int n = 1; n < 10; n++){
+          percent[n] = timesShown[n]/salesData.length * 100; 
+          percent[n] = Math.round(percent[n]*10.0) / 10.0; //Rounds to 1 decimal place
+          System.out.println(n+ ":" + percent[n]);
+        }
+        //Checks if the first digit frequency is between 29% and 32% 
+        if (percent[1] > 29 && percent[1] < 32){
+          System.out.println("Fraud likely did NOT occur."); 
+        }
+        else{
+          System.out.println("Fraud likely did occur."); 
+        }
+        return percent; 
+      }
 }
+  
+ 
+ 
+
  
  
