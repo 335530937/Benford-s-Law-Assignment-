@@ -38,18 +38,32 @@ public class App extends Application {
                 launch(args); //Launches the JavaFX application 
             }
         }
- 
- 
     }
     
-    //DocString
+    /*
+     * Description: Reads the csv file and uses substring to return the 
+     *              sales without the postal code. 
+     * 
+     * @author - Amir Sayffi 
+     * 
+     * @param - The double array sales will be populated with the sales data
+     * @return - returns the double array sales data
+     * */ 
+    
     public static double [] readCsv(double[] sales){
 
-      //Paste
+      
         double [] sample = {111, 111, 111, 555, 565, 666, 666, 666, 666, 666};
         sales = sample; 
+
+
+
         return sales;
     }
+
+
+
+
     
     /*
     * Description: Asks user to choose an option
@@ -175,7 +189,7 @@ public class App extends Application {
           System.out.println("Fraud likely did occur."); 
         }
         return percent; 
-      }
+    }
 }
   
  
