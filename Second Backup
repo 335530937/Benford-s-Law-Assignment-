@@ -71,9 +71,7 @@ public class App extends Application {
  
         reader.close();
         return choice;   
-         
     }
-        
     
     /*
     * Description: Generates a bar chart and displays the digit frequency as a percentage on the bar chart. Also exports the digit
@@ -84,10 +82,8 @@ public class App extends Application {
     @Override 
     public void start(Stage stage) throws Exception {
 
-        //Lets we're working with these numbers 
-        //double empty[] = {}; 
-        double salesData[] = {111, 111, 111, 222231, 323231, 444321, 66666, 709917, 881237, 998321}; 
-        //double salesData[] = readCsv(empty); 
+        double empty[] = {}; 
+        double salesData[] = readCsv(empty); 
         
 
         //salesData = readCsv(salesData); 
